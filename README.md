@@ -6,7 +6,7 @@ header-only C++20 string obfuscator that hides literals from .rdata via compile-
 - compile-time dfa
 - strict memory wiping
 - emulator makes brrr
-- no xor
+- not xor
 
 ## how it works
 - **compile-time:** custom fnv-1a + bitwise shifts encrypt your strings into a multi-layer dfa matrix. each `AUTOSTR` macro call uses `__TIMESTAMP__` and `__COUNTER__` for uniq key
@@ -20,7 +20,7 @@ header-only C++20 string obfuscator that hides literals from .rdata via compile-
 #include <string>
 #include "autocrypt.hpp"
 
-int main() {
+int main() {     // @ default usage:
     std::cout << AUTOSTR("enter key: ");
     std::string input;
     std::cin >> input;
@@ -28,7 +28,7 @@ int main() {
     if (input == AUTOSTR("super_secret")) {
         std::wcout << AUTOSTR(L"done") << std::endl;         // output encrypted wide string
     } else {
-        std::wcout << AUTOSTR(L"denied") << std::endl;        // output encrypted wide string
+        std::wcout << AUTOSTR(L"denied") << std::endl;
     }
 
     return 0;
